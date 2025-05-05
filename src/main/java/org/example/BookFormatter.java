@@ -1,7 +1,8 @@
 package org.example;
 
 public class BookFormatter {
-    private BookDAO dao = new BookDAO();
+    //private BookDAO dao = new BookDAO();
+    private BookDAO dao;
 
     public void printAllBooks() {
         System.out.println("Title, name, surname, patronymic, year:");

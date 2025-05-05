@@ -1,7 +1,12 @@
 package org.example;
 
 public class BookService {
-    private BookDAO dao = new BookDAO();
+    //private BookDAO dao = new BookDAO();
+    private BookDAO dao;
+
+    public BookService(BookDAO dao) {
+        this.dao = dao;
+    }
 
     public void addBook(String title, String authorName, String authorSurname, String authorPatronymic, int year) {
         if (title.length() > 128) {

@@ -7,7 +7,8 @@ public class MenuBook {
     private BookFormatter formatter = new BookFormatter();
     private String title, authorName, authorSurname, authorPatronymic;
     private int year, id;
-    private BookService service = new BookService();
+    private BookDAO dao = new BookDAO();
+    private BookService service = new BookService(dao);
 
     public MenuBook() {
         while (true) {
@@ -18,7 +19,7 @@ public class MenuBook {
                     "4 - Удалить книгу" +
                     "5 - Выход" +
                     "Ввод: ");*/
-            System.out.print("The console application 'Library Management 2.3.2'\n" +
+            System.out.print("The console application 'Library Management 2.3.3'\n" +
                     "1 - Add the book\n" +
                     "2 - Show all the books\n" +
                     "3 - change the name of the book\n" +
