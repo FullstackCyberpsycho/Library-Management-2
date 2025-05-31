@@ -3,22 +3,22 @@ package org.example;
 public class Book {
     private int id;
     private String title;
-    private Author author;
+    //private Author author;
     private int year;
     private static int count = 0;
 
-    public Book(String title, Author author, int year) {
+    public Book(String title, int year/*, Author author*/) {
         this.title = title;
-        this.author = author;
         this.year = year;
+        //this.author = author;
     }
 
-    public Book(int id, String title, Author author, int year) {
+    /*public Book(int id, String title, Author author, int year) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.year = year;
-    }
+    }*/
 
     public int getId() {
         return id;
@@ -32,9 +32,9 @@ public class Book {
         return year;
     }
 
-    public Author getAuthor() {
+    /*public Author getAuthor() {
         return author;
-    }
+    }*/
 
     public void setTitle(String title) {
         this.title = title;
@@ -44,9 +44,9 @@ public class Book {
         this.year = year;
     }
 
-    public void setAuthor(Author author) {
+    /*public void setAuthor(Author author) {
         this.author = author;
-    }
+    }*/
 
     public static int getCount() {
         return ++count;

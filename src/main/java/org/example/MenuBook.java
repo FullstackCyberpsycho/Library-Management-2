@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class MenuBook {
     private Scanner in = new Scanner(System.in);
     private BookFormatter formatter = new BookFormatter();
-    private String title, authorName, authorSurname, authorPatronymic;
+    private String title, name, surname, patronymic;
     private int year, id;
     private BookService service = new BookService(new BookDAO());
 
@@ -18,7 +18,7 @@ public class MenuBook {
                     "4 - Удалить книгу" +
                     "5 - Выход" +
                     "Ввод: ");*/
-            System.out.print("The console application 'Library Management 2.3.5'\n" +
+            System.out.print("The console application 'Library Management 2.3.6'\n" +
                     "1 - Add the book\n" +
                     "2 - Show all the books\n" +
                     "3 - change the name of the book\n" +
@@ -39,18 +39,21 @@ public class MenuBook {
                     System.out.print("Год: "); year = in.nextInt();*/
                     System.out.println("Enter information about the book: ");
                     System.out.print("Name: "); title = in.nextLine();
+                    System.out.print("Year: "); year = in.nextInt(); in.nextLine();
 
                     System.out.println("Author:");
-                    System.out.print("Name: "); authorName = in.nextLine();
-                    System.out.print("Surname: "); authorSurname = in.nextLine();
-                    System.out.print("Patronymic: "); authorPatronymic = in.nextLine();
+                    System.out.print("Name: "); name = in.nextLine();
+                    System.out.print("Surname: "); surname = in.nextLine();
+                    System.out.print("Patronymic: "); patronymic = in.nextLine();
 
-                    System.out.print("Year: "); year = in.nextInt();
-
-                    service.addBook(title, authorName, authorSurname, authorPatronymic, year);
+                    //service.addBook(title, authorName, authorSurname, authorPatronymic, year);
+                    service.addAuthor(name, surname, patronymic);
+                    service.addBook(title, year/*, new Author(name, surname, patronymic)*/);
                     break;
                 case "2":
-                    formatter.printAllBooks();
+                    //formatter.printAllInfoBooks();
+                    service.printAllInfoBook();
+
                     break;
                 case "3":
                     /*System.out.println("Введите ID и название книги для её изменения: ");
