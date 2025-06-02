@@ -2,7 +2,6 @@ package org.example;
 
 public class Author {
     private String name, surname, patronymic;
-
     public Author(String name, String surname, String patronymic) {
         this.name = name;
         this.surname = surname;

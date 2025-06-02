@@ -37,7 +37,7 @@ public class BookFormatter {
         }
     }*/
 
-    public void printTitleBooks() {
+    /*public void printTitleBooks() {
         dao.getTitleBooks().stream().forEach(System.out::println);
-    }
+    }*/
 }

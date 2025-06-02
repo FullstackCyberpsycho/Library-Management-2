@@ -7,7 +7,7 @@ public class MenuBook {
     private BookFormatter formatter = new BookFormatter();
     private String title, name, surname, patronymic;
     private int year, id;
-    private BookService service = new BookService(new BookDAO());
+    private BookService service = new BookService(new BookDAO(), new AuthorDAO());
 
     public MenuBook() {
         while (true) {
@@ -18,7 +18,7 @@ public class MenuBook {
                     "4 - Удалить книгу" +
                     "5 - Выход" +
                     "Ввод: ");*/
-            System.out.print("The console application 'Library Management 2.3.6'\n" +
+            System.out.print("The console application 'Library Management 2.3.7'\n" +
                     "1 - Add the book\n" +
                     "2 - Show all the books\n" +
                     "3 - change the name of the book\n" +
@@ -46,12 +46,10 @@ public class MenuBook {
                     System.out.print("Surname: "); surname = in.nextLine();
                     System.out.print("Patronymic: "); patronymic = in.nextLine();
 
-                    //service.addBook(title, authorName, authorSurname, authorPatronymic, year);
                     service.addAuthor(name, surname, patronymic);
-                    service.addBook(title, year/*, new Author(name, surname, patronymic)*/);
+                    service.addBook(title, year);
                     break;
                 case "2":
-                    //formatter.printAllInfoBooks();
                     service.printAllInfoBook();
 
                     break;
@@ -59,7 +57,7 @@ public class MenuBook {
                     /*System.out.println("Введите ID и название книги для её изменения: ");
                     System.out.print("ID: "); id = in.nextInt();
                     System.out.print("Название: "); title = in.nextLine();*/
-                    formatter.printTitleBooks();
+                    service.printTitleBooks();
                     System.out.println("Enter the ID and name of the book to change it: ");
                     System.out.print("ID: "); id = in.nextInt(); in.nextLine();
                     System.out.print("Name: "); title = in.nextLine();
@@ -67,7 +65,7 @@ public class MenuBook {
                     service.updateBook(id, title);
                     break;
                 case "4":
-                    formatter.printTitleBooks();
+                    service.printTitleBooks();
                     //System.out.println("Введите ID книги для её удаления: ");
                     System.out.println("Enter ID books to delete it: ");
                     System.out.print("ID: "); id = in.nextInt();
