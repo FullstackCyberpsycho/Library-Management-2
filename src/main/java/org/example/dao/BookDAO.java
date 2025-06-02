@@ -1,4 +1,7 @@
-package org.example;
+package org.example.dao;
+
+import org.example.model.AuthorId;
+import org.example.model.Book;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -8,6 +11,7 @@ public class BookDAO {
     private final String url = "jdbc:postgresql://localhost:5432/library_management";
     private final String user = "postgres";
     private final String password = "1512BDS7425";
+    private int count = 0;
 
     public void addBook(Book book) {
         AuthorId authorId = new AuthorId();
@@ -18,8 +22,7 @@ public class BookDAO {
             pstmt.setInt(2, book.getYear());
             pstmt.setInt(3, authorId.getId());
             pstmt.executeUpdate();
-            //System.out.println("Книга добавлена");
-            System.out.println("The book is added");
+            System.out.println("Книга добавлена");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -27,13 +30,16 @@ public class BookDAO {
     }
 
     public void getAllInfoBooks() {
+        count = 0;
         String sql = "SELECT b.title, b.year, a.name, a.surname, a.patronymic FROM books b\n" +
                 "JOIN authors a ON b.author_id = a.id;";
 
         try (Connection conn = getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
-            System.out.println("title, name, surname, patronymic, год");
+
+            System.out.println("Название книги, ФИО, год:");
+
             while (rs.next()) {
                 String title = rs.getString("title");
                 int year = rs.getInt("Year");
@@ -41,8 +47,7 @@ public class BookDAO {
                 String surname = rs.getString("surname");
                 String patronymic = rs.getString("patronymic");
 
-
-                System.out.println(title + ", " + name + " " + surname + " " + patronymic + ", " + year);
+                System.out.println(++count + ") " +title + ", " + name + " " + surname + " " + patronymic + ", " + year);
             }
 
         } catch (SQLException e) {
@@ -51,7 +56,7 @@ public class BookDAO {
     }
 
     public void getTitleBooks() {
-        int count = 0;
+        count = 0;
         String sql = "SELECT id, title FROM books";
         List<String> titles = new ArrayList<>();
 
@@ -59,12 +64,13 @@ public class BookDAO {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
+            System.out.println("Номер, id, название книги");
             while (rs.next()) {
                 String title = rs.getString("title");
                 int id = rs.getInt("id");
                 titles.add(id + ": " + title);
 
-                System.out.println(id + ": " + title);
+                System.out.println(++count + ") " + id + ":" + title);
             }
 
         } catch (SQLException e) {
@@ -80,8 +86,7 @@ public class BookDAO {
             pstmt.setString(1, newTitle);
             pstmt.setInt(2, id);
             pstmt.executeUpdate();
-            //System.out.println("Название книги изменено");
-            System.out.println("The name of the book is changed");
+            System.out.println("Название книги изменено");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -95,8 +100,7 @@ public class BookDAO {
 
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
-            //System.out.println("Книга удалена");
-            System.out.println("The book is deleted");
+            System.out.println("Книга удалена");
 
         } catch (SQLException e) {
             e.printStackTrace();

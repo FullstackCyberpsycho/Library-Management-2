@@ -1,4 +1,6 @@
-package org.example;
+package org.example.dao;
+
+import org.example.model.Author;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,8 +20,7 @@ public class AuthorDAO {
             pstmt.setString(2, author.getSurname());
             pstmt.setString(3, author.getPatronymic());
             pstmt.executeUpdate();
-            //System.out.println("Книга добавлена");
-            System.out.println("The author is added");
+            System.out.println("Автор добавлен");
 
         } catch (SQLException e) {
             e.printStackTrace();

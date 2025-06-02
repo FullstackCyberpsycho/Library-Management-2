@@ -1,4 +1,4 @@
-package org.example;
+/*package org.example;
 
 public class BookInfo {
     private String title;
@@ -34,5 +34,4 @@ public class BookInfo {
     public String getAuthorPatronymic() {
         return authorPatronymic;
     }
-}
-
+}*/

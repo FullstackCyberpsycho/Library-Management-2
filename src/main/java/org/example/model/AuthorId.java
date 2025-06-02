@@ -1,4 +1,4 @@
-package org.example;
+package org.example.model;
 
 import java.io.File;
 import java.io.FileWriter;
