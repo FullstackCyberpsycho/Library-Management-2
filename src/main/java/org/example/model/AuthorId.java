@@ -1,4 +1,4 @@
-package org.example.model;
+/* org.example.model;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -47,4 +47,4 @@ public class AuthorId {
     public int getId() {
         return id;
     }
-}
+}*/

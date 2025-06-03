@@ -1,6 +1,6 @@
 package org.example.dao;
 
-import org.example.model.AuthorId;
+//import org.example.model.AuthorId;
 import org.example.model.Book;
 
 import java.sql.*;
@@ -14,13 +14,15 @@ public class BookDAO {
     private int count = 0;
 
     public void addBook(Book book) {
-        AuthorId authorId = new AuthorId();
-        String sql = "INSERT INTO books (title, year, author_id) VALUES (?, ?, ?)";
+        //AuthorId authorId = new AuthorId();
+        //String sql = "INSERT INTO books (title, year, author_id) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO books (title, year) VALUES (?, ?)";
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, book.getTitle());
             pstmt.setInt(2, book.getYear());
-            pstmt.setInt(3, authorId.getId());
+            //pstmt.setInt(3, authorId.getId());
+
             pstmt.executeUpdate();
             System.out.println("Книга добавлена");
 

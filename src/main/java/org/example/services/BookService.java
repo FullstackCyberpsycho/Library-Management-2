@@ -3,7 +3,7 @@ package org.example.services;
 import org.example.dao.AuthorDAO;
 import org.example.dao.BookDAO;
 import org.example.model.Author;
-import org.example.model.AuthorId;
+//import org.example.model.AuthorId;
 import org.example.model.Book;
 
 public class BookService {
@@ -36,9 +36,9 @@ public class BookService {
         if (title.length() > 150) {
             System.out.println("Error: Название книги слишком длинное");
         } else {
-           AuthorId authorId = new AuthorId();
+           //AuthorId authorId = new AuthorId();
 
-            authorId.setId();
+            //authorId.setId();
             Book book = new Book(title, year);
             bookDAO.addBook(book);
         }
