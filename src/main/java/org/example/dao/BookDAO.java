@@ -13,7 +13,7 @@ public class BookDAO {
     private final String user = "postgres";
     private final String password = "1512BDS7425";
     private int count = 0;
-    private boolean isINfo;
+    //private boolean isInfo;
 
     public void addBook(Book book) {
         //AuthorId authorId = new AuthorId();
@@ -67,6 +67,7 @@ public class BookDAO {
         }
     }
 
+
     public void getTitleBooks() {
         count = 0;
         String sql = "SELECT id, title FROM books";
@@ -76,18 +77,13 @@ public class BookDAO {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
-            if (!rs.isBeforeFirst()) {
-                isINfo = false;
-                System.out.println("Информация о книге пуста!");
-            } else {
-                System.out.println("Номер, id, название книги");
-                while (rs.next()) {
-                    String title = rs.getString("title");
-                    int id = rs.getInt("id");
-                    titles.add(id + ": " + title);
+            System.out.println("Номер, id, название книги");
+            while (rs.next()) {
+                String title = rs.getString("title");
+                int id = rs.getInt("id");
+                titles.add(id + ": " + title);
 
-                    System.out.println(++count + ") " + id + ":" + title);
-                }
+                System.out.println(++count + ") " + id + ":" + title);
             }
 
         } catch (SQLException e) {
