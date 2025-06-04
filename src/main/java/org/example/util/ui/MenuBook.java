@@ -13,7 +13,7 @@ public class MenuBook {
 
     public MenuBook() {
         while (true) {
-            System.out.print("Консольное приложение 'Library Management 2.4.8'\n" +
+            System.out.print("Консольное приложение 'Library Management 2.4.10'\n" +
                     "1 - Добавить книгу\n" +
                     "2 - Показать все книги\n" +
                     "3 - изменить название книги\n" +

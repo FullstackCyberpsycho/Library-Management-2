@@ -6,6 +6,7 @@ import org.example.model.Book;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class BookDAO {
     private final String url = "jdbc:postgresql://localhost:5432/library_management";
@@ -51,6 +52,9 @@ public class BookDAO {
 
                 System.out.println(++count + ") " +title + ", " + name + " " + surname + " " + patronymic + ", " + year);
             }
+            System.out.print("Нажмите 'Ener' чтобы продолжить ");
+            Scanner in = new Scanner(System.in);
+            in.nextLine();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -96,14 +100,29 @@ public class BookDAO {
     }
 
     public void deleteBook(int id) {
-        String sql = "DELETE FROM books WHERE id = ?";
-        try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        String sql1 = "DELETE FROM books WHERE id = ?";
+        String sql2 = "DELETE FROM authors WHERE id = ?";
 
-            pstmt.setInt(1, id);
-            pstmt.executeUpdate();
-            System.out.println("Книга удалена");
+        try (Connection conn = getConnection()) {
+            conn.setAutoCommit(false);
 
+            try (PreparedStatement pstmt1 = conn.prepareStatement(sql1);
+                 PreparedStatement pstmt2 = conn.prepareStatement(sql2)) {
+
+                pstmt1.setInt(1, id);
+                pstmt1.executeUpdate();
+                System.out.print("Книга и ");
+
+                pstmt2.setInt(1, id);
+                pstmt2.executeUpdate();
+                System.out.println("автор удалены");
+
+                conn.commit();
+
+            } catch (SQLException e) {
+                conn.rollback();
+                e.printStackTrace();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
