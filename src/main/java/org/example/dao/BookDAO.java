@@ -13,6 +13,7 @@ public class BookDAO {
     private final String user = "postgres";
     private final String password = "1512BDS7425";
     private int count = 0;
+    private boolean isINfo;
 
     public void addBook(Book book) {
         //AuthorId authorId = new AuthorId();
@@ -41,18 +42,23 @@ public class BookDAO {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
-            System.out.println("Название книги, ФИО, год:");
+            if (!rs.isBeforeFirst()) {
+                System.out.println("Информация о книге пуста!");
+            } else {
+                System.out.println("Название книги, ФИО, год:");
 
-            while (rs.next()) {
-                String title = rs.getString("title");
-                int year = rs.getInt("Year");
-                String name = rs.getString("name");
-                String surname = rs.getString("surname");
-                String patronymic = rs.getString("patronymic");
+                while (rs.next()) {
+                    String title = rs.getString("title");
+                    int year = rs.getInt("year");
+                    String name = rs.getString("name");
+                    String surname = rs.getString("surname");
+                    String patronymic = rs.getString("patronymic");
 
-                System.out.println(++count + ") " +title + ", " + name + " " + surname + " " + patronymic + ", " + year);
+                    System.out.println(++count + ") " + title + ", " + name + " " + surname + " " + patronymic + ", " + year);
+                }
             }
-            System.out.print("Нажмите 'Ener' чтобы продолжить ");
+
+            System.out.print("Нажмите 'Enter' чтобы продолжить ");
             Scanner in = new Scanner(System.in);
             in.nextLine();
 
@@ -70,13 +76,18 @@ public class BookDAO {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
-            System.out.println("Номер, id, название книги");
-            while (rs.next()) {
-                String title = rs.getString("title");
-                int id = rs.getInt("id");
-                titles.add(id + ": " + title);
+            if (!rs.isBeforeFirst()) {
+                isINfo = false;
+                System.out.println("Информация о книге пуста!");
+            } else {
+                System.out.println("Номер, id, название книги");
+                while (rs.next()) {
+                    String title = rs.getString("title");
+                    int id = rs.getInt("id");
+                    titles.add(id + ": " + title);
 
-                System.out.println(++count + ") " + id + ":" + title);
+                    System.out.println(++count + ") " + id + ":" + title);
+                }
             }
 
         } catch (SQLException e) {
