@@ -139,6 +139,33 @@ public class BookDAO {
         }
     }
 
+    public void deleteAllBook() {
+        String sql1 = "DELETE FROM books;";
+        String sql2 = "DELETE FROM authors;";
+
+        try (Connection conn = getConnection()) {
+            conn.setAutoCommit(false);
+
+            try (PreparedStatement pstmt1 = conn.prepareStatement(sql1);
+                 PreparedStatement pstmt2 = conn.prepareStatement(sql2)) {
+
+                pstmt1.executeUpdate();
+                System.out.print("Книги и ");
+
+                pstmt2.executeUpdate();
+                System.out.println("авторы удалены");
+
+                conn.commit();
+
+            } catch (SQLException e) {
+                conn.rollback();
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private final Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, user, password);
     }

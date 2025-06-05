@@ -8,12 +8,12 @@ import java.util.Scanner;
 
 public class MenuBook {
     private Scanner in = new Scanner(System.in);
-    private String title, name, surname, patronymic, year, id;
+    private String title, name, surname, patronymic, year, id, choice;
     private BookService service = new BookService(new BookDAO(), new AuthorDAO());
 
     public MenuBook() {
         while (true) {
-            System.out.print("Консольное приложение 'Library Management 2.4.11'\n" +
+            System.out.print("Консольное приложение 'Library Management 2.5.12'\n" +
                     "1 - Добавить книгу\n" +
                     "2 - Показать все книги\n" +
                     "3 - изменить название книги\n" +
@@ -48,11 +48,20 @@ public class MenuBook {
                     service.updateBook(Integer.parseInt(id), title);
                     break;
                 case "4":
-                    service.printTitleBooks();
-                    System.out.println("Введите ID книги для её удаления: ");
-                    System.out.print("ID: "); id = in.nextLine();
+                    System.out.print("1 - Удалить определенную книгу\n" +
+                            "2 - Удалить все книги\n" +
+                            "Ввод: ");
+                    choice = in.nextLine();
 
-                    service.deleteBook(Integer.parseInt(id));
+                    if (choice.equals("1")) {
+                        service.printTitleBooks();
+                        System.out.println("Введите ID книги для её удаления: ");
+                        System.out.print("ID: "); id = in.nextLine();
+
+                        service.deleteBook(Integer.parseInt(id));
+                    } else {
+                        service.deleteAllBook();
+                    }
                     break;
                 case "5":
                     System.out.println("Вы вышли из приложения");

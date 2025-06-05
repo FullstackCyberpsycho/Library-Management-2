@@ -51,4 +51,8 @@ public class BookService {
     public void deleteBook(int id) {
         bookDAO.deleteBook(id);
     }
+
+    public void deleteAllBook() {
+        bookDAO.deleteAllBook();
+    }
 }
