@@ -54,7 +54,12 @@ public class BookDAO {
                     String surname = rs.getString("surname");
                     String patronymic = rs.getString("patronymic");
 
-                    System.out.println(++count + ") " + title + ", " + name + " " + surname + " " + patronymic + ", " + year);
+                    String output = ++count + ") " + title + ", " + name + " " + surname;
+                    if (!patronymic.isEmpty()) {
+                        output += " " + patronymic;
+                    }
+                    output += ", " + year;
+                    System.out.println(output);
                 }
             }
 
@@ -66,7 +71,6 @@ public class BookDAO {
             e.printStackTrace();
         }
     }
-
 
     public void getTitleBooks() {
         count = 0;
