@@ -59,7 +59,7 @@ public class MenuBook {
                         System.out.print("ID: "); id = in.nextLine();
 
                         service.deleteBook(Integer.parseInt(id));
-                    } else {
+                    } else if (choice.equals("2")) {
                         service.deleteAllBook();
                     }
                     break;
