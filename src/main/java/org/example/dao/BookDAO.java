@@ -13,17 +13,13 @@ public class BookDAO {
     private final String user = "postgres";
     private final String password = "1512BDS7425";
     private int count = 0;
-    //private boolean isInfo;
 
     public void addBook(Book book) {
-        //AuthorId authorId = new AuthorId();
-        //String sql = "INSERT INTO books (title, year, author_id) VALUES (?, ?, ?)";
         String sql = "INSERT INTO books (title, year) VALUES (?, ?)";
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, book.getTitle());
             pstmt.setInt(2, book.getYear());
-            //pstmt.setInt(3, authorId.getId());
 
             pstmt.executeUpdate();
             System.out.println("Книга добавлена");
