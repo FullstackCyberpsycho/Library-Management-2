@@ -16,7 +16,7 @@ public class MenuBook {
 
     public MenuBook() {
         while (true) {
-            System.out.print("Консольное приложение 'Library Management 2.5.13'\n" +
+            System.out.print("Консольное приложение 'Library Management 2.5.14'\n" +
                     "1 - Добавить книгу\n" +
                     "2 - Показать все книги\n" +
                     "3 - изменить название книги\n" +
@@ -36,12 +36,84 @@ public class MenuBook {
                     System.out.print("Фамилия: "); surname = in.nextLine();
                     System.out.print("Отчество: "); patronymic = in.nextLine();
 
-                    //service.addAuthor(name, surname, patronymic);
                     authorService.addAuthor(name, surname, patronymic);
                     bookService.addBook(title, Integer.parseInt(year));
                     break;
                 case "2":
                     bookService.printAllInfoBook();
+
+                    System.out.print("1 - Сортировать\n"+
+                            "Ввод: ");
+                    choice = in.nextLine();
+
+                    if (choice.equals("1")) {
+                        System.out.print("1 - По названию книги\n" +
+                                "2 - По имени автора\n" +
+                                "3 - По году книги\n" +
+                                "Ввод: ");
+                        choice = in.nextLine();
+
+                        switch (choice) {
+                            case "1":
+                                System.out.print("1 - По возрастанию\n" +
+                                        "2 - По убыванию\n" +
+                                        "Ввод: ");
+                                choice = in.nextLine();
+                                if (choice.equals("1")) {
+                                    bookService.printAllSortASCNameBook();
+
+                                    System.out.print("Нажмите 'Enter' чтобы продолжить ");
+                                    Scanner in = new Scanner(System.in);
+                                    in.nextLine();
+                                } else if (choice.equals("2")) {
+                                    bookService.printAllSortDESCNameBook();
+
+                                    System.out.print("Нажмите 'Enter' чтобы продолжить ");
+                                    Scanner in = new Scanner(System.in);
+                                    in.nextLine();
+                                }
+                                break;
+                            case "2":
+                                System.out.print("1 - По возрастанию\n" +
+                                        "2 - По убыванию\n" +
+                                        "Ввод: ");
+                                choice = in.nextLine();
+                                if (choice.equals("1")) {
+                                    bookService.printAllSortASCNameAuthor();
+
+                                    System.out.print("Нажмите 'Enter' чтобы продолжить ");
+                                    Scanner in = new Scanner(System.in);
+                                    in.nextLine();
+                                } else if (choice.equals("2")) {
+                                    bookService.printAllSortDESCNameAuthor();
+
+                                    System.out.print("Нажмите 'Enter' чтобы продолжить ");
+                                    Scanner in = new Scanner(System.in);
+                                    in.nextLine();
+                                }
+                                break;
+                            case "3":
+                                System.out.print("1 - По возрастанию\n" +
+                                        "2 - По убыванию\n" +
+                                        "Ввод: ");
+                                choice = in.nextLine();
+                                if (choice.equals("1")) {
+                                    bookService.printAllSortASCYearBook();
+
+                                    System.out.print("Нажмите 'Enter' чтобы продолжить ");
+                                    Scanner in = new Scanner(System.in);
+                                    in.nextLine();
+                                } else if (choice.equals("2")) {
+                                    bookService.printAllSortDESCYearBook();
+
+                                    System.out.print("Нажмите 'Enter' чтобы продолжить ");
+                                    Scanner in = new Scanner(System.in);
+                                    in.nextLine();
+                                }
+                                break;
+                        }
+                    }
+
                     break;
                 case "3":
                     bookService.printTitleBooks();

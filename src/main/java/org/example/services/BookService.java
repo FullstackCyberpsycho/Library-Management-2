@@ -20,6 +20,30 @@ public class BookService {
         bookDAO.getTitleBooks();
     }
 
+    public void printAllSortASCNameBook() {
+        bookDAO.getAllSortASCNameBook();
+    }
+
+    public void printAllSortDESCNameBook() {
+        bookDAO.getAllSortDESCNameBook();
+    }
+
+    public void printAllSortASCNameAuthor() {
+        bookDAO.getAllSortASCNameAuthor();
+    }
+
+    public void printAllSortDESCNameAuthor() {
+        bookDAO.getAllSortDESCNameAuthor();
+    }
+
+    public void printAllSortASCYearBook() {
+        bookDAO.getAllSortASCYearBook();
+    }
+
+    public void printAllSortDESCYearBook() {
+        bookDAO.getAllSortDESCYearBook();
+    }
+
     public void addBook(String title, int year) {
         if (title.length() > 150) {
             System.out.println("Error: Название книги слишком длинное");

@@ -1,6 +1,5 @@
 package org.example.dao;
 
-//import org.example.model.AuthorId;
 import org.example.model.Book;
 
 import java.sql.*;
@@ -59,14 +58,255 @@ public class BookDAO {
                 }
             }
 
-            System.out.print("Нажмите 'Enter' чтобы продолжить ");
+            /*System.out.print("Нажмите 'Enter' чтобы продолжить ");
             Scanner in = new Scanner(System.in);
-            in.nextLine();
+            in.nextLine();*/
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+    public void getAllSortASCNameBook() {
+        count = 0;
+        String sql = "SELECT b.title, b.year, a.name, a.surname, a.patronymic FROM books b\n" +
+                "JOIN authors a ON b.author_id = a.id\n" +
+                "ORDER BY b.title;";
+
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            if (!rs.isBeforeFirst()) {
+                System.out.println("Информация о книге пуста!");
+            } else {
+                System.out.println("Название книги, ФИО, год:");
+
+                while (rs.next()) {
+                    String title = rs.getString("title");
+                    int year = rs.getInt("year");
+                    String name = rs.getString("name");
+                    String surname = rs.getString("surname");
+                    String patronymic = rs.getString("patronymic");
+
+                    String output = ++count + ") " + title + ", " + name + " " + surname;
+                    if (!patronymic.isEmpty()) {
+                        output += " " + patronymic;
+                    }
+                    output += ", " + year;
+                    System.out.println(output);
+                }
+            }
+
+            /*System.out.print("Нажмите 'Enter' чтобы продолжить ");
+            Scanner in = new Scanner(System.in);
+            in.nextLine();*/
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getAllSortDESCNameBook() {
+        count = 0;
+        String sql = "SELECT b.title, b.year, a.name, a.surname, a.patronymic FROM books b\n" +
+                "JOIN authors a ON b.author_id = a.id\n" +
+                "ORDER BY b.title DESC;";
+
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            if (!rs.isBeforeFirst()) {
+                System.out.println("Информация о книге пуста!");
+            } else {
+                System.out.println("Название книги, ФИО, год:");
+
+                while (rs.next()) {
+                    String title = rs.getString("title");
+                    int year = rs.getInt("year");
+                    String name = rs.getString("name");
+                    String surname = rs.getString("surname");
+                    String patronymic = rs.getString("patronymic");
+
+                    String output = ++count + ") " + title + ", " + name + " " + surname;
+                    if (!patronymic.isEmpty()) {
+                        output += " " + patronymic;
+                    }
+                    output += ", " + year;
+                    System.out.println(output);
+                }
+            }
+
+            /*System.out.print("Нажмите 'Enter' чтобы продолжить ");
+            Scanner in = new Scanner(System.in);
+            in.nextLine();*/
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getAllSortASCNameAuthor() {
+        count = 0;
+        String sql = "SELECT b.title, b.year, a.name, a.surname, a.patronymic FROM books b\n" +
+                "JOIN authors a ON b.author_id = a.id\n" +
+                "ORDER BY a.name;";
+
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            if (!rs.isBeforeFirst()) {
+                System.out.println("Информация о книге пуста!");
+            } else {
+                System.out.println("Название книги, ФИО, год:");
+
+                while (rs.next()) {
+                    String title = rs.getString("title");
+                    int year = rs.getInt("year");
+                    String name = rs.getString("name");
+                    String surname = rs.getString("surname");
+                    String patronymic = rs.getString("patronymic");
+
+                    String output = ++count + ") " + title + ", " + name + " " + surname;
+                    if (!patronymic.isEmpty()) {
+                        output += " " + patronymic;
+                    }
+                    output += ", " + year;
+                    System.out.println(output);
+                }
+            }
+
+            /*System.out.print("Нажмите 'Enter' чтобы продолжить ");
+            Scanner in = new Scanner(System.in);
+            in.nextLine();*/
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getAllSortDESCNameAuthor() {
+        count = 0;
+        String sql = "SELECT b.title, b.year, a.name, a.surname, a.patronymic FROM books b\n" +
+                "JOIN authors a ON b.author_id = a.id\n" +
+                "ORDER BY a.name DESC;";
+
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            if (!rs.isBeforeFirst()) {
+                System.out.println("Информация о книге пуста!");
+            } else {
+                System.out.println("Название книги, ФИО, год:");
+
+                while (rs.next()) {
+                    String title = rs.getString("title");
+                    int year = rs.getInt("year");
+                    String name = rs.getString("name");
+                    String surname = rs.getString("surname");
+                    String patronymic = rs.getString("patronymic");
+
+                    String output = ++count + ") " + title + ", " + name + " " + surname;
+                    if (!patronymic.isEmpty()) {
+                        output += " " + patronymic;
+                    }
+                    output += ", " + year;
+                    System.out.println(output);
+                }
+            }
+
+            /*System.out.print("Нажмите 'Enter' чтобы продолжить ");
+            Scanner in = new Scanner(System.in);
+            in.nextLine();*/
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getAllSortASCYearBook() {
+        count = 0;
+        String sql = "SELECT b.title, b.year, a.name, a.surname, a.patronymic FROM books b\n" +
+                "JOIN authors a ON b.author_id = a.id\n" +
+                "ORDER BY b.year;";
+
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            if (!rs.isBeforeFirst()) {
+                System.out.println("Информация о книге пуста!");
+            } else {
+                System.out.println("Название книги, ФИО, год:");
+
+                while (rs.next()) {
+                    String title = rs.getString("title");
+                    int year = rs.getInt("year");
+                    String name = rs.getString("name");
+                    String surname = rs.getString("surname");
+                    String patronymic = rs.getString("patronymic");
+
+                    String output = ++count + ") " + title + ", " + name + " " + surname;
+                    if (!patronymic.isEmpty()) {
+                        output += " " + patronymic;
+                    }
+                    output += ", " + year;
+                    System.out.println(output);
+                }
+            }
+
+            /*System.out.print("Нажмите 'Enter' чтобы продолжить ");
+            Scanner in = new Scanner(System.in);
+            in.nextLine();*/
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getAllSortDESCYearBook() {
+        count = 0;
+        String sql = "SELECT b.title, b.year, a.name, a.surname, a.patronymic FROM books b\n" +
+                "JOIN authors a ON b.author_id = a.id\n" +
+                "ORDER BY b.year DESC;";
+
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            if (!rs.isBeforeFirst()) {
+                System.out.println("Информация о книге пуста!");
+            } else {
+                System.out.println("Название книги, ФИО, год:");
+
+                while (rs.next()) {
+                    String title = rs.getString("title");
+                    int year = rs.getInt("year");
+                    String name = rs.getString("name");
+                    String surname = rs.getString("surname");
+                    String patronymic = rs.getString("patronymic");
+
+                    String output = ++count + ") " + title + ", " + name + " " + surname;
+                    if (!patronymic.isEmpty()) {
+                        output += " " + patronymic;
+                    }
+                    output += ", " + year;
+                    System.out.println(output);
+                }
+            }
+
+            /*System.out.print("Нажмите 'Enter' чтобы продолжить ");
+            Scanner in = new Scanner(System.in);
+            in.nextLine();*/
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void getTitleBooks() {
         count = 0;

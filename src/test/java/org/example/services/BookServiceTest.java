@@ -64,4 +64,40 @@ public class BookServiceTest {
         service.printTitleBooks();
         verify(mockBookDAO).getTitleBooks();
     }
+
+    @Test
+    public void testPrintAllSortASCNameBook() {
+        service.printAllSortASCNameBook();
+        verify(mockBookDAO).getAllSortASCNameBook();
+    }
+
+    @Test
+    public void testPrintAllSortDESCNameBook() {
+        service.printAllSortDESCNameBook();
+        verify(mockBookDAO).getAllSortDESCNameBook();
+    }
+
+    @Test
+    public void testPrintAllSortASCNameAuthor() {
+        service.printAllSortASCNameAuthor();
+        verify(mockBookDAO).getAllSortASCNameAuthor();
+    }
+
+    @Test
+    public void testPrintAllSortDESCNameAuthor() {
+        service.printAllSortDESCNameAuthor();
+        verify(mockBookDAO).getAllSortDESCNameAuthor();
+    }
+
+    @Test
+    public void testAllSortASCYearBook() {
+        service.printAllSortASCYearBook();
+        verify(mockBookDAO).getAllSortASCYearBook();
+    }
+    @Test
+    public void testPrintAllSortDESCYearBook() {
+        service.printAllSortDESCYearBook();
+        verify(mockBookDAO).getAllSortDESCYearBook();
+    }
+
 }
