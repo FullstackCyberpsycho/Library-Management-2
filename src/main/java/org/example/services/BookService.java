@@ -44,6 +44,10 @@ public class BookService {
         bookDAO.getAllSortDESCYearBook();
     }
 
+    public void printgetTitleAndYearBooks() {
+        bookDAO.getTitleAndYearBooks();
+    }
+
     public void addBook(String title, int year) {
         if (title.length() > 150) {
             System.out.println("Error: Название книги слишком длинное");
@@ -53,8 +57,12 @@ public class BookService {
         }
     }
 
-    public void updateBook(int id, String title) {
-        bookDAO.updateBook(id, title);
+    public void updateTitleBook(int id, String title) {
+        bookDAO.updateTitleBook(id, title);
+    }
+
+    public void updateTitleAndYearBook(int id, String newTitle, String newYear) {
+        bookDAO.updateTitleAndYearBook(id, newTitle, newYear);
     }
 
     public void deleteBook(int id) {

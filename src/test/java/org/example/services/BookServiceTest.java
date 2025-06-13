@@ -36,9 +36,9 @@ public class BookServiceTest {
     }
 
     @Test
-    public void testUpdateBook() {
-        service.updateBook(1, "Test");
-        verify(mockBookDAO).updateBook(1, "Test");
+    public void testupdateTitleBook() {
+        service.updateTitleBook(1, "Test");
+        verify(mockBookDAO).updateTitleBook(1, "Test");
     }
 
     @Test

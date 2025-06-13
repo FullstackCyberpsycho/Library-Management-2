@@ -331,7 +331,32 @@ public class BookDAO {
         }
     }
 
-    public void updateBook(int id, String newTitle) {
+    public void getTitleAndYearBooks() {
+        count = 0;
+        String sql = "SELECT id, title, year FROM books";
+        List<String> titles = new ArrayList<>();
+
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            System.out.println("Номер, id, название, год книги");
+            while (rs.next()) {
+                String title = rs.getString("title");
+                int id = rs.getInt("id");
+                int year = rs.getInt("year");
+
+                titles.add(id + ": " + title);
+
+                System.out.println(++count + ") " + id + ":" + title + " - " + year);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateTitleBook(int id, String newTitle) {
         String sql = "UPDATE books SET title = ? WHERE id = ?";
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -340,6 +365,25 @@ public class BookDAO {
             pstmt.setInt(2, id);
             pstmt.executeUpdate();
             System.out.println("Название книги изменено");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // String newName,
+    //                                  String newSurname, String newPatronymic
+    public void updateTitleAndYearBook(int id, String newTitle, String newYear) {
+        String sql = "UPDATE books SET title = ?, year = ? WHERE id = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, newTitle);
+            pstmt.setInt(2, Integer.parseInt(newYear));
+            pstmt.setInt(3, id);
+
+            pstmt.executeUpdate();
+            System.out.println("Название и год книги изменены");
 
         } catch (SQLException e) {
             e.printStackTrace();
