@@ -36,9 +36,15 @@ public class BookServiceTest {
     }
 
     @Test
-    public void testupdateTitleBook() {
-        service.updateTitleBook(1, "Test");
-        verify(mockBookDAO).updateTitleBook(1, "Test");
+    public void testNameUpdateBook() {
+        service.updateBook(1, "Test");
+        verify(mockBookDAO).updateBook(1, "Test");
+    }
+
+    @Test
+    public void testNameAndYearUpdateBook() {
+        service.updateBook(1, "Test", "Testov");
+        verify(mockBookDAO).updateBook(1, "Test", "Testov");
     }
 
     @Test
@@ -94,10 +100,10 @@ public class BookServiceTest {
         service.printAllSortASCYearBook();
         verify(mockBookDAO).getAllSortASCYearBook();
     }
+
     @Test
     public void testPrintAllSortDESCYearBook() {
         service.printAllSortDESCYearBook();
         verify(mockBookDAO).getAllSortDESCYearBook();
     }
-
 }

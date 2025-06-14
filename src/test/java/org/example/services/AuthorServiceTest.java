@@ -40,4 +40,29 @@ public class AuthorServiceTest {
                 "T", "T");
         verify(mockAuthorDAO, never()).addAuthors(any(Author.class));
     }
+
+    @Test
+    public void testUpdateAuthor() {
+        authorService.updateAuthor(1, "Tn", "Ts", "Tp");
+        verify(mockAuthorDAO).updateAuthor(1, "Tn", "Ts", "Tp");
+    }
+
+    @Test
+    public void testUpdateNameAuthor() {
+        authorService.updateNameAuthor(1, "name");
+        verify(mockAuthorDAO).updateNameAuthor(1, "name");
+    }
+
+    @Test
+    public void testUpdateSurnameAuthor() {
+        authorService.updateSurnameAuthor(1, "surname");
+        verify(mockAuthorDAO).updateSurnameAuthor(1, "surname");
+    }
+
+    @Test
+    public void testUpdatePatronymicAuthor() {
+        authorService.updatePatronymicAuthor(1, "patronymic");
+        verify(mockAuthorDAO).updatePatronymicAuthor(1, "patronymic");
+    }
+
 }

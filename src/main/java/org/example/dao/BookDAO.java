@@ -5,7 +5,6 @@ import org.example.model.Book;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class BookDAO {
     private final String url = "jdbc:postgresql://localhost:5432/library_management";
@@ -356,7 +355,7 @@ public class BookDAO {
         }
     }
 
-    public void updateTitleBook(int id, String newTitle) {
+    public void updateBook(int id, String newTitle) {
         String sql = "UPDATE books SET title = ? WHERE id = ?";
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -371,9 +370,7 @@ public class BookDAO {
         }
     }
 
-    // String newName,
-    //                                  String newSurname, String newPatronymic
-    public void updateTitleAndYearBook(int id, String newTitle, String newYear) {
+    public void updateBook(int id, String newTitle, String newYear) {
         String sql = "UPDATE books SET title = ?, year = ? WHERE id = ?";
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

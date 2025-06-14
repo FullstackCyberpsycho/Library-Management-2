@@ -2,7 +2,6 @@ package org.example.util.ui;
 
 import org.example.dao.AuthorDAO;
 import org.example.dao.BookDAO;
-import org.example.model.Author;
 import org.example.services.AuthorService;
 import org.example.services.BookService;
 
@@ -16,10 +15,10 @@ public class MenuBook {
 
     public MenuBook() {
         while (true) {
-            System.out.print("Консольное приложение 'Library Management 2.7.14'\n" +
+            System.out.print("Консольное приложение 'Library Management 2.8.15'\n" +
                     "1 - Добавить книгу\n" +
                     "2 - Показать все книги\n" +
-                    "3 - Изменить книгу (beta 1)\n" +
+                    "3 - Изменить книгу\n" +
                     "4 - Удалить книгу\n" +
                     "5 - Выход\n" +
                     "Ввод: ");
@@ -116,12 +115,6 @@ public class MenuBook {
 
                     break;
                 case "3":
-                    /*System.out.print("1 - Изменить всю информацию книги\n" +
-                            "2 - Изменить название книги\n" +
-                            "3 - Изменить год книги\n" +
-                            "3 - Изменить автора книги\n" +
-                            "Ввод: ");*/
-
                      System.out.print("1 - Изменить название книги\n" +
                             "2 - Изменить название и год книги\n" +
                             "3 - Изменить автора книги\n" +
@@ -135,38 +128,63 @@ public class MenuBook {
                             System.out.print("ID: "); id = in.nextLine();
                             System.out.print("Название: "); title = in.nextLine();
 
-                            bookService.updateTitleBook(Integer.parseInt(id), title);
+                            bookService.updateBook(Integer.parseInt(id), title);
                             break;
                         case "2":
                             bookService.printgetTitleAndYearBooks();
-
                             System.out.println("Введите ID, название и год книги: ");
                             System.out.print("ID: "); id = in.nextLine();
                             System.out.print("Название: "); title = in.nextLine();
                             System.out.print("Год: "); year = in.nextLine();
 
-                            bookService.updateTitleAndYearBook(Integer.parseInt(id), title, year);
+                            bookService.updateBook(Integer.parseInt(id), title, year);
                             break;
                         case "3":
-                            System.out.println("В разработке!");
-                            /*bookService.printTitleBooks();
+                            System.out.print("1 - Изменить ФИО\n" +
+                                    "2 - Изменить имя\n" +
+                                    "3 - Изиенить фамилию\n" +
+                                    "4 - Изменить отчество\n" +
+                                    "Ввод: ");
+                            choice = in.nextLine();
 
-                            System.out.println("Введите ID и информацию о авторе книги:");
-                            System.out.print("Имя: "); name = in.nextLine();
-                            System.out.print("Фамилия: "); surname = in.nextLine();
-                            System.out.print("Отчество: "); patronymic = in.nextLine();*/
+                            switch (choice) {
+                                case "1":
+                                   authorService.printInfoAuthor();
+                                    System.out.println("Введите ID и информацию о авторе книги:");
+                                    System.out.print("ID: "); id = in.nextLine();
+                                    System.out.print("Имя: "); name = in.nextLine();
+                                    System.out.print("Фамилия: "); surname = in.nextLine();
+                                    System.out.print("Отчество: "); patronymic = in.nextLine();
 
+                                    authorService.updateAuthor(Integer.parseInt(id), name, surname, patronymic);
+                                    break;
+                                case "2":
+                                    authorService.printInfoAuthor();
+                                    System.out.println("Введите ID и имя автора");
+                                    System.out.print("ID: "); id = in.nextLine();
+                                    System.out.print("Имя: "); name = in.nextLine();
+
+                                    authorService.updateNameAuthor(Integer.parseInt(id), name);
+                                    break;
+                                case "3":
+                                    authorService.printInfoAuthor();
+                                    System.out.println("Введите ID и фамилию автора");
+                                    System.out.print("ID: "); id = in.nextLine();
+                                    System.out.print("Фамилия: "); surname = in.nextLine();
+
+                                    authorService.updateSurnameAuthor(Integer.parseInt(id), surname);
+                                    break;
+                                case "4":
+                                    authorService.printInfoAuthor();
+                                    System.out.println("Введите ID и отчество автора");
+                                    System.out.print("ID: "); id = in.nextLine();
+                                    System.out.print("Отчество: "); patronymic = in.nextLine();
+
+                                    authorService.updatePatronymicAuthor(Integer.parseInt(id), patronymic);
+                                    break;
+                            }
                             break;
                     }
-
-
-                    /*bookService.printTitleBooks();
-
-                    System.out.println("Введите ID и название книги для её изменения: ");
-                    System.out.print("ID: "); id = in.nextLine();
-                    System.out.print("Название: "); title = in.nextLine();
-
-                    bookService.updateBook(Integer.parseInt(id), title);*/
                     break;
                 case "4":
                     System.out.print("1 - Удалить определенную книгу\n" +
