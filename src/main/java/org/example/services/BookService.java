@@ -57,14 +57,6 @@ public class BookService {
         }
     }
 
-    /*public void updateTitleBook(int id, String newTitle) {
-        bookDAO.updateTitleBook(id, newTitle);
-    }
-
-    public void updateTitleAndYearBook(int id, String newTitle, String newYear) {
-        bookDAO.updateTitleAndYearBook(id, newTitle, newYear);
-    }*/
-
     public void updateBook(int id, String newTitle) {
         bookDAO.updateBook(id, newTitle);
     }

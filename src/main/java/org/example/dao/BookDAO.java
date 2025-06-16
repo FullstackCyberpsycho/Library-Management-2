@@ -56,11 +56,6 @@ public class BookDAO {
                     System.out.println(output);
                 }
             }
-
-            /*System.out.print("Нажмите 'Enter' чтобы продолжить ");
-            Scanner in = new Scanner(System.in);
-            in.nextLine();*/
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -96,11 +91,6 @@ public class BookDAO {
                     System.out.println(output);
                 }
             }
-
-            /*System.out.print("Нажмите 'Enter' чтобы продолжить ");
-            Scanner in = new Scanner(System.in);
-            in.nextLine();*/
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -136,11 +126,6 @@ public class BookDAO {
                     System.out.println(output);
                 }
             }
-
-            /*System.out.print("Нажмите 'Enter' чтобы продолжить ");
-            Scanner in = new Scanner(System.in);
-            in.nextLine();*/
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -176,11 +161,6 @@ public class BookDAO {
                     System.out.println(output);
                 }
             }
-
-            /*System.out.print("Нажмите 'Enter' чтобы продолжить ");
-            Scanner in = new Scanner(System.in);
-            in.nextLine();*/
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -216,11 +196,6 @@ public class BookDAO {
                     System.out.println(output);
                 }
             }
-
-            /*System.out.print("Нажмите 'Enter' чтобы продолжить ");
-            Scanner in = new Scanner(System.in);
-            in.nextLine();*/
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -256,11 +231,6 @@ public class BookDAO {
                     System.out.println(output);
                 }
             }
-
-            /*System.out.print("Нажмите 'Enter' чтобы продолжить ");
-            Scanner in = new Scanner(System.in);
-            in.nextLine();*/
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -296,11 +266,6 @@ public class BookDAO {
                     System.out.println(output);
                 }
             }
-
-            /*System.out.print("Нажмите 'Enter' чтобы продолжить ");
-            Scanner in = new Scanner(System.in);
-            in.nextLine();*/
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
