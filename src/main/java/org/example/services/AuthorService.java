@@ -15,7 +15,7 @@ public class AuthorService {
             System.out.println("Error: ФИО слишком длинное");
         } else {
             Author author = new Author(name, surname, patronymic);
-            authorDAO.addAuthors(author);
+            authorDAO.addAuthor(author);
         }
     }
 

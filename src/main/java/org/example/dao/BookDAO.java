@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookDAO {
-    private final String url = "jdbc:postgresql://localhost:5432/library_management";
-    private final String user = "postgres";
-    private final String password = "1512BDS7425";
+    private final String url =
+    private final String user =
+    private final String password =
     private int count = 0;
 
     public void addBook(Book book) {

@@ -30,7 +30,7 @@ public class AuthorServiceTest {
     @Test
     public void testAddAuthor() {
         authorService.addAuthor("Test", "Testov", "Testovich");
-        verify(mockAuthorDAO).addAuthors(any(Author.class));
+        verify(mockAuthorDAO).addAuthor(any(Author.class));
     }
 
     @Test
@@ -38,7 +38,7 @@ public class AuthorServiceTest {
         authorService.addAuthor("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" +
                         "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
                 "T", "T");
-        verify(mockAuthorDAO, never()).addAuthors(any(Author.class));
+        verify(mockAuthorDAO, never()).addAuthor(any(Author.class));
     }
 
     @Test
