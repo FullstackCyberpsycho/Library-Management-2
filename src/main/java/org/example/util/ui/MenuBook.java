@@ -97,13 +97,13 @@ public class MenuBook {
                                         "Ввод: ");
                                 choice = in.nextLine();
                                 if (choice.equals("1")) {
-                                    bookService.printAllSortASCYearBook();
+                                    bookService.printAllSortDESCYearBook();
 
                                     System.out.print("Нажмите 'Enter' чтобы продолжить ");
                                     Scanner in = new Scanner(System.in);
                                     in.nextLine();
                                 } else if (choice.equals("2")) {
-                                    bookService.printAllSortDESCYearBook();
+                                    bookService.printAllSortASCYearBook();
 
                                     System.out.print("Нажмите 'Enter' чтобы продолжить ");
                                     Scanner in = new Scanner(System.in);

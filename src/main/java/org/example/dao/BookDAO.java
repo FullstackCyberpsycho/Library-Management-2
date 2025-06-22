@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookDAO {
-    private final String url =
-    private final String user =
-    private final String password =
+    private final String url = "jdbc:postgresql://localhost:5432/library_management";
+    private final String user = "postgres";
+    private final String password = "1512BDS7425";
     private int count = 0;
 
     public void addBook(Book book) {
@@ -201,11 +201,11 @@ public class BookDAO {
         }
     }
 
-    public void getAllSortASCYearBook() {
+    public void getAllSortDESCYearBook() {
         count = 0;
         String sql = "SELECT b.title, b.year, a.name, a.surname, a.patronymic FROM books b\n" +
                 "JOIN authors a ON b.author_id = a.id\n" +
-                "ORDER BY b.year;";
+                "ORDER BY b.year DESC;";
 
         try (Connection conn = getConnection();
              Statement stmt = conn.createStatement();
@@ -236,11 +236,11 @@ public class BookDAO {
         }
     }
 
-    public void getAllSortDESCYearBook() {
+    public void getAllSortASCYearBook() {
         count = 0;
         String sql = "SELECT b.title, b.year, a.name, a.surname, a.patronymic FROM books b\n" +
                 "JOIN authors a ON b.author_id = a.id\n" +
-                "ORDER BY b.year DESC;";
+                "ORDER BY b.year;";
 
         try (Connection conn = getConnection();
              Statement stmt = conn.createStatement();
@@ -408,7 +408,8 @@ public class BookDAO {
         }
     }
 
-    private final Connection getConnection() throws SQLException {
+
+    protected Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, user, password);
     }
 }

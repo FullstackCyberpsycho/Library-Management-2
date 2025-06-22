@@ -35,9 +35,7 @@ public class AuthorServiceTest {
 
     @Test
     public void testTestAddAuthorLongName() {
-        authorService.addAuthor("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" +
-                        "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
-                "T", "T");
+        authorService.addAuthor("T".repeat(100), "T", "T");
         verify(mockAuthorDAO, never()).addAuthor(any(Author.class));
     }
 

@@ -5,20 +5,10 @@ import org.example.model.Author;
 import java.sql.*;
 
 public class AuthorDAO {
-    private final String url =
-    private final String user =
-    private final String password =
-    private Connection connection;
-
-    public AuthorDAO(String url, String username, String password) {
-        try {
-            connection = DriverManager.getConnection(url, username, password);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public AuthorDAO() {}
+    private final String url = "jdbc:postgresql://localhost:5432/library_management";
+    private final String user = "postgres";
+    private final String password = "1512BDS7425";
+    protected Connection connection;
 
     public void addAuthor(Author author) {
         String sql = "INSERT INTO authors (name, surname, patronymic) VALUES (?, ?, ?)";
@@ -33,27 +23,6 @@ public class AuthorDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public Author findAuthor(String name, String surname, String patronymic) {
-        String sql = "SELECT name, surname, patronymic FROM authors WHERE name = ? AND surname = ? AND patronymic = ?";
-        try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, name);
-            stmt.setString(2, surname);
-            stmt.setString(3, patronymic);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                return new Author(
-                        rs.getString("name"),
-                        rs.getString("surname"),
-                        rs.getString("patronymic")
-                );
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return null;
     }
 
     public void getInfoAuthor() {
@@ -148,7 +117,7 @@ public class AuthorDAO {
         }
     }
 
-    private final Connection getConnection() throws SQLException {
+    protected Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, user, password);
     }
 }
