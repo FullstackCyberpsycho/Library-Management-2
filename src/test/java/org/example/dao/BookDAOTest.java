@@ -8,8 +8,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.sql.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @Testcontainers
 public class BookDAOTest {
@@ -63,8 +62,13 @@ public class BookDAOTest {
             pstmt.setString(1, "Test");
             ResultSet rs = pstmt.executeQuery();
             assertTrue(rs.next());
-            assertEquals("Test", rs.getString("title"));
-            //assertEquals(1234, rs.getString("year"));
+            //assertEquals("Test", rs.getString("title"));
+            //assertEquals("1234", rs.getString("year"));
+
+            assertAll(
+                    () -> assertEquals("Test", rs.getString("title")),
+                    () -> assertEquals("1234", rs.getString("year"))
+            );
         }
     }
 
