@@ -1,11 +1,15 @@
 package org.example.dao;
 
+import org.example.model.Book;
 import org.junit.jupiter.api.*;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.sql.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Testcontainers
 public class BookDAOTest {
@@ -39,15 +43,30 @@ public class BookDAOTest {
                     "patronymic VARCHAR(64)\n" +
                     ");");
 
-            stmt.execute("CREATE TABLE books (" +
-                    "id SERIAL PRIMARY KEY," +
-                    "title VARCHAR(100)," +
-                    "year INT," +
-                    "author_id INT REFERENCES authors(id)" +
-                    ")");
+            stmt.execute("CREATE TABLE books (\n" +
+                    "id SERIAL PRIMARY KEY,\n" +
+                    "title VARCHAR(128) NOT NULL,\n" +
+                    "year INTEGER NOT NULL\n" +
+                    //"author_id SERIAL REFERENCES authors(id) \n" +
+                    ");");
         }
     }
 
+    @Test
+    void testAddBook() throws SQLException {
+        Book book = new Book("Test", 1234);
+        bookDAO.addBook(book);
+
+        try (Connection conn = bookDAO.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(
+                     "SELECT title, year FROM books WHERE title = ?")) {
+            pstmt.setString(1, "Test");
+            ResultSet rs = pstmt.executeQuery();
+            assertTrue(rs.next());
+            assertEquals("Test", rs.getString("title"));
+            //assertEquals(1234, rs.getString("year"));
+        }
+    }
 
     @AfterAll
     public static void stop() {
